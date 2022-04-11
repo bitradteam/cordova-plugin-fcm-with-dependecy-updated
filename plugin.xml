@@ -44,7 +44,7 @@
 		<!-- <resource-file src="google-services.json" target="app/googleservices.json" /> -->
 
 		<config-file target="AndroidManifest.xml" parent="/manifest/application">
-			<activity android:name="com.gae.scaffolder.plugin.FCMPluginActivity" android:launchMode="singleTop">
+			<activity android:name="com.gae.scaffolder.plugin.FCMPluginActivity" android:launchMode="singleTop" android:exported="false">
 				<intent-filter>
 					<action android:name="FCM_PLUGIN_ACTIVITY" />
 					<category android:name="android.intent.category.DEFAULT" />
