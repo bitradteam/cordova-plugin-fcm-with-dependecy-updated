@@ -62,7 +62,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
       }
     }
   }
-/*
+
   private Map<String, Object> buildNotificationData(RemoteMessage remoteMessage) {
     Map<String, Object> data = new HashMap<>();
 
@@ -73,7 +73,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     Log.d(TAG, "\tNotification Data: " + data);
     return data;
   }
-
+/*
   private void buildNotification(String channel, String title, String message) {
 
     Intent intent = new Intent(this, MainActivity.class);
