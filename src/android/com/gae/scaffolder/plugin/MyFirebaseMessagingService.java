@@ -13,7 +13,6 @@ import androidx.core.app.NotificationManagerCompat;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.meawallet.mtp.*;
-import com.outsystemsenterprise.sonaedev.CartaoContinente.MainActivity;
 import com.salesforce.marketingcloud.MarketingCloudSdk;
 import com.salesforce.marketingcloud.messages.push.PushMessageManager;
 
@@ -63,7 +62,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
       }
     }
   }
-
+/*
   private Map<String, Object> buildNotificationData(RemoteMessage remoteMessage) {
     Map<String, Object> data = new HashMap<>();
 
@@ -107,4 +106,5 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
       notificationManager.createNotificationChannel(channel);
     }
   }
+  */
 }
