@@ -35,7 +35,7 @@
 
 	<!-- ANDROID CONFIGURATION -->
 	<platform name="android">
-		<preference name="ANDROID_DEFAULT_NOTIFICATION_ICON" default="@drawable/ic_notification" />
+		<!-- <preference name="ANDROID_DEFAULT_NOTIFICATION_ICON" default="@drawable/ic_notification" /> -->
 		<preference name="ANDROID_FCM_VERSION" default="21.0.0" />
 		<preference name="ANDROID_FIREBASE_BOM_VERSION" default="26.0.0" />
 		<preference name="ANDROID_GOOGLE_SERVICES_VERSION" default="4.3.4" />
@@ -44,6 +44,7 @@
 		<config-file target="AndroidManifest.xml" parent="/manifest">
 			<uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 		</config-file>
+		
 		<config-file target="AndroidManifest.xml" parent="/manifest/application">
 			<activity android:name="com.gae.scaffolder.plugin.FCMPluginActivity" android:launchMode="singleTop" android:exported="true">
 				<intent-filter>
@@ -56,7 +57,7 @@
 					<action android:name="com.google.firebase.MESSAGING_EVENT"/>
 				</intent-filter>
 			</service>
-			<meta-data android:name="com.google.firebase.messaging.default_notification_icon" android:resource="$ANDROID_DEFAULT_NOTIFICATION_ICON" />
+			<!-- <meta-data android:name="com.google.firebase.messaging.default_notification_icon" android:resource="$ANDROID_DEFAULT_NOTIFICATION_ICON" /> -->
 		</config-file>
 
 		<config-file target="AndroidManifest.xml" parent="/manifest">
