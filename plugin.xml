@@ -42,7 +42,6 @@
 		<preference name="ANDROID_GRADLE_TOOLS_VERSION" default="4.1.0" />
 
 		<config-file target="AndroidManifest.xml" parent="/manifest/application">
-			<uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 			<activity android:name="com.gae.scaffolder.plugin.FCMPluginActivity" android:launchMode="singleTop" android:exported="true">
 				<intent-filter>
 					<action android:name="FCM_PLUGIN_ACTIVITY" />
@@ -56,7 +55,11 @@
 			</service>
 			<meta-data android:name="com.google.firebase.messaging.default_notification_icon" android:resource="$ANDROID_DEFAULT_NOTIFICATION_ICON" />
 		</config-file>
-		
+
+		<config-file target="AndroidManifest.xml" parent="/manifest">
+			<uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+		</config-file>
+
 		<config-file target="res/xml/config.xml" parent="/*">
 			<feature name="FCMPlugin">
 				<param name="android-package" value="com.gae.scaffolder.plugin.FCMPlugin"/>
