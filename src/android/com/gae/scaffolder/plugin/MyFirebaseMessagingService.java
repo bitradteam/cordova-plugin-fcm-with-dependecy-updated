@@ -12,7 +12,6 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-import com.meawallet.mtp.*;
 import com.salesforce.marketingcloud.MarketingCloudSdk;
 import com.salesforce.marketingcloud.messages.push.PushMessageManager;
 
@@ -42,24 +41,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     if (PushMessageManager.isMarketingCloudPush(remoteMessage)) {
       MarketingCloudSdk.requestSdk(marketingCloudSdk -> marketingCloudSdk.getPushMessageManager().handleMessage(remoteMessage));
-    } else {
-      try {
-        Map<String, String> messageData = remoteMessage.getData();
-        if (MeaTokenPlatform.Rns.isMeaRemoteMessage(messageData)) {
-          if (MeaTokenPlatform.Rns.isMeaTransactionMessage(messageData)) {
-            MeaTransactionMessage transactionMessage = MeaTokenPlatform.Rns.parseTransactionMessage(messageData);
-            String transactionPushMessage =
-                "Pagamento " + transactionMessage.getAuthorizationStatus()  +
-                    "\nValor " + transactionMessage.getAmount() + " " + transactionMessage.getCurrencyCode();
-//            buildNotification("MEA_TRANSACTION_NOTIFICATION", "Continente Pay", transactionPushMessage);
-          } else {
-            MeaTokenPlatform.Rns.onMessageReceived(messageData);
-          }
-        }
-        FCMPlugin.sendPushPayload(buildNotificationData(remoteMessage));
-      } catch (NotInitializedException | InvalidInputException | NotRegisteredException | MeaCardException | MeaException e) {
-        e.printStackTrace();
-      }
+    }
     }
   }
 
