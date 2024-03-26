@@ -68,6 +68,10 @@ repositories {
 }
 dependencies {
     implementation "com.salesforce.marketingcloud:marketingcloudsdk:7.4.2"
+
+    //test PB e DM Mabs 10
+    implementation "com.google.firebase:firebase-core:9.6.1"
+    
     // Load system enviroment defined values, or, if unavailable, plugin defaults
     def ANDROID_FCM_VERSION = System.getenv('ANDROID_FCM_VERSION') ?: '21.0.0'
     def ANDROID_FIREBASE_BOM_VERSION = System.getenv('ANDROID_FIREBASE_BOM_VERSION') ?: '26.0.0'
