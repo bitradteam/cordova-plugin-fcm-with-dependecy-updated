@@ -67,7 +67,7 @@ repositories {
     maven { url "https://salesforce-marketingcloud.github.io/MarketingCloudSDK-Android/repository" }
 }
 dependencies {
-    implementation "com.salesforce.marketingcloud:marketingcloudsdk:8.0.7"
+    implementation "com.salesforce.marketingcloud:marketingcloudsdk:8.0.6"
     // Load system enviroment defined values, or, if unavailable, plugin defaults
     def ANDROID_FCM_VERSION = System.getenv('ANDROID_FCM_VERSION') ?: '21.0.0'
     def ANDROID_FIREBASE_BOM_VERSION = System.getenv('ANDROID_FIREBASE_BOM_VERSION') ?: '26.0.0'
