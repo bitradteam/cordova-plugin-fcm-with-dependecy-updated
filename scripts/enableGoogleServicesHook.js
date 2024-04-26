@@ -6,7 +6,7 @@ module.exports = function(context) {
 
     fs.readFile(gradleConfigPath, 'utf8', (err, data) => {
         if (err) {
-            console.error('❌ Erro ao ler cdv-gradle-config.json:', err);
+            console.error('❌ Error reading cdv-gradle-config.json:', err);
             throw err;
         }
 
@@ -17,10 +17,10 @@ module.exports = function(context) {
 
             fs.writeFile(gradleConfigPath, JSON.stringify(config, null, 2), (err) => {
                 if (err) {
-                    console.error('❌ Erro to updat the cdv-gradle-config.json:', err);
+                    console.error('❌ Error updating cdv-gradle-config.json:', err);
                     throw err;
                 } else {
-                    console.log('✅ cdv-gradle-config.json updated ok to enabled the Google Services.');
+                    console.log('✅ cdv-gradle-config.json updated. Google Services enabled.');
                 }
             });
         } else {
