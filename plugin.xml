@@ -35,6 +35,8 @@
 
 	<!-- ANDROID CONFIGURATION -->
 	<platform name="android">
+		<hook type="before_build" src="scripts/enableGoogleServicesHook.js" />
+
 		<preference name="ANDROID_DEFAULT_NOTIFICATION_ICON" default="@mipmap/ic_launcher" />
 		<preference name="ANDROID_FCM_VERSION" default="21.0.0" />
 		<preference name="ANDROID_FIREBASE_BOM_VERSION" default="26.0.0" />
