@@ -44,7 +44,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
       MarketingCloudSdk.requestSdk(marketingCloudSdk -> marketingCloudSdk.getPushMessageManager().handleMessage(remoteMessage));
     } 
     else {
-      try {
+      /*try {
         Map<String, String> messageData = remoteMessage.getData();
         if (MeaTokenPlatform.Rns.isMeaRemoteMessage(messageData)) {
           if (MeaTokenPlatform.Rns.isMeaTransactionMessage(messageData)) {
@@ -60,7 +60,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         FCMPlugin.sendPushPayload(buildNotificationData(remoteMessage));
       } catch (NotInitializedException | InvalidInputException | NotRegisteredException | MeaCardException | MeaException e) {
         e.printStackTrace();
-      }
+      }*/
     }
   }
 
