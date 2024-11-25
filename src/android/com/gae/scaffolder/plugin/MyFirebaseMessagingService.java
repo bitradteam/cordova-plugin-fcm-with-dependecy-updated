@@ -12,7 +12,6 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-import com.meawallet.mtp.*;
 import com.salesforce.marketingcloud.MarketingCloudSdk;
 import com.salesforce.marketingcloud.messages.push.PushMessageManager;
 
@@ -45,7 +44,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     } else {
       try {
         Map<String, String> messageData = remoteMessage.getData();
-        if (MeaTokenPlatform.Rns.isMeaRemoteMessage(messageData)) {
+        // MEA wallet section commented due to lack of usage or discontinued feature
+        /*if (MeaTokenPlatform.Rns.isMeaRemoteMessage(messageData)) {
           if (MeaTokenPlatform.Rns.isMeaTransactionMessage(messageData)) {
             MeaTransactionMessage transactionMessage = MeaTokenPlatform.Rns.parseTransactionMessage(messageData);
             String transactionPushMessage =
@@ -55,9 +55,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
           } else {
             MeaTokenPlatform.Rns.onMessageReceived(messageData);
           }
-        }
+        }*/
         FCMPlugin.sendPushPayload(buildNotificationData(remoteMessage));
-      } catch (NotInitializedException | InvalidInputException | NotRegisteredException | MeaCardException | MeaException e) {
+      } catch (NotInitializedException | InvalidInputException | NotRegisteredException e) { // | MeaCardException | MeaException e) {
         e.printStackTrace();
       }
     }
