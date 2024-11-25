@@ -41,11 +41,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     if (PushMessageManager.isMarketingCloudPush(remoteMessage)) {
       MarketingCloudSdk.requestSdk(marketingCloudSdk -> marketingCloudSdk.getPushMessageManager().handleMessage(remoteMessage));
-    } else {
+    } 
+    // MEA wallet section commented due to lack of usage or discontinued feature
+    /*else {
       try {
         Map<String, String> messageData = remoteMessage.getData();
-        // MEA wallet section commented due to lack of usage or discontinued feature
-        /*if (MeaTokenPlatform.Rns.isMeaRemoteMessage(messageData)) {
+        if (MeaTokenPlatform.Rns.isMeaRemoteMessage(messageData)) {
           if (MeaTokenPlatform.Rns.isMeaTransactionMessage(messageData)) {
             MeaTransactionMessage transactionMessage = MeaTokenPlatform.Rns.parseTransactionMessage(messageData);
             String transactionPushMessage =
@@ -55,12 +56,13 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
           } else {
             MeaTokenPlatform.Rns.onMessageReceived(messageData);
           }
-        }*/
+        }
         FCMPlugin.sendPushPayload(buildNotificationData(remoteMessage));
-      } catch (NotInitializedException | InvalidInputException | NotRegisteredException e) { // | MeaCardException | MeaException e) {
+      } catch (NotInitializedException | InvalidInputException | NotRegisteredException | MeaCardException | MeaException e) {
         e.printStackTrace();
       }
     }
+    */
   }
 
   private Map<String, Object> buildNotificationData(RemoteMessage remoteMessage) {
