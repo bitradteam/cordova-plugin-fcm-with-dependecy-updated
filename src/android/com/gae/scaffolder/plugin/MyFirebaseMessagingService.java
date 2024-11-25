@@ -12,6 +12,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.meawallet.mtp.*;
 import com.salesforce.marketingcloud.MarketingCloudSdk;
 import com.salesforce.marketingcloud.messages.push.PushMessageManager;
 
@@ -42,8 +43,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     if (PushMessageManager.isMarketingCloudPush(remoteMessage)) {
       MarketingCloudSdk.requestSdk(marketingCloudSdk -> marketingCloudSdk.getPushMessageManager().handleMessage(remoteMessage));
     } 
-    // MEA wallet section commented due to lack of usage or discontinued feature
-    /*else {
+    else {
       try {
         Map<String, String> messageData = remoteMessage.getData();
         if (MeaTokenPlatform.Rns.isMeaRemoteMessage(messageData)) {
@@ -62,7 +62,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         e.printStackTrace();
       }
     }
-    */
   }
 
   private Map<String, Object> buildNotificationData(RemoteMessage remoteMessage) {
