@@ -43,7 +43,32 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
       MarketingCloudSdk.requestSdk(marketingCloudSdk -> marketingCloudSdk.getPushMessageManager().handleMessage(remoteMessage));
     } 
     else {
-      
+      // Not a Marketing Cloud push: offer it to the app's own plugins, when they
+      // are installed. By reflection on purpose, so this fork keeps compiling and
+      // behaving exactly as before in an app without them.
+      Map<String, String> data = remoteMessage.getData();
+      offerToPlugin("pt.sonae.cc.liveactivity.CCLiveActivityRouter", "handle", data, true);
+      offerToPlugin("pt.sonae.cc.pushlistener.CCPushListenerPlugin", "dispatch", data, false);
+    }
+  }
+
+  /**
+   * Calls a static method of another plugin, if that plugin is in the app.
+   * A missing plugin is the normal case and does nothing; any other error is
+   * logged and swallowed, so a bug there can never break this service.
+   */
+  private void offerToPlugin(String className, String method, Map<String, String> data, boolean withContext) {
+    try {
+      Class<?> target = Class.forName(className);
+      if (withContext) {
+        target.getMethod(method, Context.class, Map.class).invoke(null, getApplicationContext(), data);
+      } else {
+        target.getMethod(method, Map.class).invoke(null, data);
+      }
+    } catch (ClassNotFoundException notInstalled) {
+      // plugin not installed in this app
+    } catch (Throwable t) {
+      Log.w(TAG, "plugin " + className + " failed to handle a message", t);
     }
   }
 
